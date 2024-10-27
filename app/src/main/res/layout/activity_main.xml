@@ -1,279 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#E4DFDF"
-    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
+    <!-- Spinner chọn loại tiền gốc -->
+    <Spinner
+        android:id="@+id/fromCurrencySpinner"
+        android:layout_width="116dp"
+        android:layout_height="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvResult"
+    <!-- USD Amount Display -->
+
+    <!-- Spinner chọn loại tiền đích -->
+
+    <EditText
+        android:id="@+id/usdAmount"
+        android:layout_width="250dp"
+        android:layout_height="98dp"
+        android:inputType="numberDecimal"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/fromCurrencySpinner"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/toCurrencySpinner"
+        android:layout_width="116dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/usdAmount" />
+
+    <!-- Update Button -->
+
+    <EditText
+        android:id="@+id/eurAmount"
+        android:layout_width="252dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="8dp"
+        android:editable="false"
+        android:inputType="none"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/toCurrencySpinner"
+        app:layout_constraintTop_toTopOf="@id/toCurrencySpinner" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update rates"
+        app:layout_constraintTop_toBottomOf="@id/eurAmount"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Keypad (Optional) -->
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="286dp"
-        android:layout_weight="5"
-        android:background="#E6E0E0"
-        android:gravity="end"
-        android:padding="16dp"
-        android:text="0"
-        android:textSize="40sp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:columnCount="3"
+        app:layout_constraintTop_toBottomOf="@id/updateButton"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <!-- Dòng 1: CE, C, BS, / -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/buttonCE"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="CE"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/buttonC"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="C"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/buttonBS"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="BS"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/buttonDivide"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="/"
-            android:textColor="#232020"
-            android:textColorLink="@android:color/darker_gray"
-            app:cornerRadius="0dp" />
-    </LinearLayout>
-
-    <!-- Dòng 2: 7, 8, 9, x -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="7"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="8"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="9"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/buttonMultiply"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="x"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-    </LinearLayout>
-
-    <!-- Dòng 3: 4, 5, 6, - -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="4"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="5"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="6"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/buttonMinus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="-"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-    </LinearLayout>
-
-    <!-- Dòng 4: 1, 2, 3, + -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="1"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="2"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="3"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/buttonPlus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="+"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-    </LinearLayout>
-
-    <!-- Dòng 5: +/-, 0, = -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/buttonPlusMinus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="+/-"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/button0"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#C1BFBF"
-            android:text="0"
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/buttonDot"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="."
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-
-        <Button
-            android:id="@+id/buttonEqual"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E4DFDF"
-            android:text="="
-            android:textColor="#232020"
-            app:cornerRadius="0dp" />
-    </LinearLayout>
-</LinearLayout>
+        <!-- Buttons for 0-9 and Clear/Backspace -->
+        <Button android:text="7" />
+        <Button android:text="8" />
+        <Button android:text="9" />
+        <Button android:text="4" />
+        <Button android:text="5" />
+        <Button android:text="6" />
+        <Button android:text="1" />
+        <Button android:text="2" />
+        <Button android:text="3" />
+        <Button android:text="0" />
+        <Button android:text="CE" />
+        <Button android:text="⌫" />
+    </GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
