@@ -1,86 +1,180 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText"
     tools:context=".MainActivity">
-    <!-- Spinner chọn loại tiền gốc -->
-    <Spinner
-        android:id="@+id/fromCurrencySpinner"
-        android:layout_width="116dp"
-        android:layout_height="56dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- USD Amount Display -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Currency"
+            android:gravity="center"
+            android:textSize="40sp" />
+    </LinearLayout>
 
-    <!-- Spinner chọn loại tiền đích -->
-
-    <EditText
-        android:id="@+id/usdAmount"
-        android:layout_width="250dp"
-        android:layout_height="98dp"
-        android:inputType="numberDecimal"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/fromCurrencySpinner"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/toCurrencySpinner"
-        android:layout_width="116dp"
-        android:layout_height="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usdAmount" />
-
-    <!-- Update Button -->
-
-    <EditText
-        android:id="@+id/eurAmount"
-        android:layout_width="252dp"
-        android:layout_height="97dp"
-        android:layout_marginTop="8dp"
-        android:editable="false"
-        android:inputType="none"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/toCurrencySpinner"
-        app:layout_constraintTop_toTopOf="@id/toCurrencySpinner" />
-
-    <Button
-        android:id="@+id/updateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update rates"
-        app:layout_constraintTop_toBottomOf="@id/eurAmount"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- Keypad (Optional) -->
-    <GridLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:columnCount="3"
-        app:layout_constraintTop_toBottomOf="@id/updateButton"
-        app:layout_constraintStart_toStartOf="parent">
+        android:orientation="vertical">
 
-        <!-- Buttons for 0-9 and Clear/Backspace -->
-        <Button android:text="7" />
-        <Button android:text="8" />
-        <Button android:text="9" />
-        <Button android:text="4" />
-        <Button android:text="5" />
-        <Button android:text="6" />
-        <Button android:text="1" />
-        <Button android:text="2" />
-        <Button android:text="3" />
-        <Button android:text="0" />
-        <Button android:text="CE" />
-        <Button android:text="⌫" />
-    </GridLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- EditText cho số tiền đầu vào -->
+        <EditText
+            android:id="@+id/input1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#E1E1E1"
+            android:gravity="start|center"
+            android:inputType="numberDecimal"
+            android:text="0"
+            android:textSize="50sp" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:entries="@array/currency_array" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/input2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#E1E1E1"
+            android:gravity="start|center"
+            android:inputType="none"
+            android:text="0"
+            android:textSize="50sp" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:entries="@array/currency_array" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/exchangeRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exchange Rate"
+            android:textSize="30sp"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/buttonRow"
+        android:background="#FFFFFF">
+
+        <View
+            style="@style/buttonNumber"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/buttonCE"
+            style="@style/buttonOperator"
+            android:text="CE"/>
+        <Button
+            android:id="@+id/buttonBS"
+            style="@style/buttonOperator"
+            android:text="⌫" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/buttonRow"
+        android:background="#FFFFFF">
+
+        <Button
+            android:id="@+id/button7"
+            style="@style/buttonNumber"
+            android:text="7"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/button8"
+            style="@style/buttonNumber"
+            android:text="8"/>
+        <Button
+            android:id="@+id/button9"
+            style="@style/buttonNumber"
+            android:text="9" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/buttonRow"
+        android:background="#FFFFFF">
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/buttonNumber"
+            android:text="4"/>
+        <Button
+            android:id="@+id/button5"
+            style="@style/buttonNumber"
+            android:text="5"/>
+        <Button
+            android:id="@+id/button6"
+            style="@style/buttonNumber"
+            android:text="6" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/buttonRow"
+        android:background="#FFFFFF">
+
+
+        <Button
+            android:id="@+id/button1"
+            style="@style/buttonNumber"
+            android:text="1"/>
+        <Button
+            android:id="@+id/button2"
+            style="@style/buttonNumber"
+            android:text="2"/>
+        <Button
+            android:id="@+id/button3"
+            style="@style/buttonNumber"
+            android:text="3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/buttonRow"
+        android:background="#FFFFFF">
+
+        <View
+            style="@style/buttonNumber"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/button0"
+            style="@style/buttonNumber"
+            android:text="0"/>
+        <Button
+            android:id="@+id/buttonDot"
+            style="@style/buttonOperator"
+            android:background="#DEDEDE"
+            android:text="." />
+
+    </LinearLayout>
+</LinearLayout>

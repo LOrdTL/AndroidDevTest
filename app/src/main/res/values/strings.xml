@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">My Application</string>
+<string name="app_name">Currency</string>
+<string-array name="currency_array">
+<item>Vietnam - Dong</item>
+<item>United States - Dollar</item>
+<item>Europe - Euro</item>
+<item>Japan - Yen</item>
+<item>Korea - Won</item>
+<!-- Thêm các loại tiền tệ khác nếu cần -->
+</string-array>
 </resources>
